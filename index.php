@@ -2,4 +2,7 @@
 
 require_once('simplepie/autoloader.php');
 
-$s = new SimplePie();
+$feed = new SimplePie();
+
+$feed->set_feed_url('./rss.xml');
+
