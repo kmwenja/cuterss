@@ -17,3 +17,8 @@ echo "<br/>";
 echo $feed->get_description();
 
 echo "<br/>";
+
+foreach($feed->get_items() as $item){
+	echo "{$item->get_title()}: {$item->get_description()}";
+	echo "<br/>";
+}
