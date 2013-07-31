@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>RSS Feed: {{ feed.get_title() }}</title>
+	<link rel="stylesheet" href="{{ urlFor('landing') }}/assets/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<h1>{{ feed.get_title() }}</h1>
+		<p>{{ feed.get_description() }}</p>
+		<hr>
+		<ul class="unstyled">
+		{% for item in feed.get_items() %}
+			<li>
+				<div>
+					<h5>{{ item.get_title() }}</h3>
+					<p>
+						{% autoescape false %}
+							{{ item.get_description() }}
+						{% endautoescape %}
+					</p>
+				</div>
+			</li>
+		{% endfor %}
+		</ul>
+	</div>
+</body>
+</html>

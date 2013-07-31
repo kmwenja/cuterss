@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Admin - CuteRss</title>
+</head>
+<body>
+	<div class="container">
+		<div class="add-rss">
+			<form action="{{ urlFor('add_rss')}}" class="form" method="POST">
+				<fieldset>
+					<legend>Feeds</legend>
+					<input type="url" name="url" placeholder="Enter Feed URL">
+					<button type="submit">Add</button>
+				</fieldset>
+			</form>
+		</div>
+		<div class="feeds">
+			<ol>
+			{% for feed in feeds %}
+				<li><a href="{{ feed.location }}">{{ feed.location }}</a></li>
+			{% endfor %}
+			</ol>
+		</div>
+	</div>
+</body>
+</html>
