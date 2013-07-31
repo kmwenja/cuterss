@@ -11,8 +11,10 @@
 		<div class="feeds">
 			{% for item in items %}
 			<div class="feed">
+				{% autoescape false %}
 				<h3>{{ item.get_title() }}</h3>
-				<p class="description">{{ item.get_description() }} <a href="{{ item.get_link() }}" target="_blank">Read More</a></p>
+				<p class="description">{{ item.get_description()|striptags('<a><p><strong><b><emphasis><i>') }} <a href="{{ item.get_link() }}" target="_blank">Read More</a></p>
+				{% endautoescape %}
 				<p class="meta">{% if item.get_author() %}By {{ item.get_author() }}{% endif %} On {{ item.get_date() }} - From <a href="{{ item.get_feed().get_link() }}" target="_blank">{{ item.get_feed().get_title() }}</a></p>
 			</div>
 			{% endfor %}
