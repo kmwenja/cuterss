@@ -11,6 +11,24 @@ require_once('config.php');
 
 function index(){
 	$app = \Slim\Slim::getInstance();
+
+	// go through all the feed urls
+	$items = array();
+
+	$feeds = ORM::for_table('feeds')->find_many();
+	foreach($feeds as $feed_loc){
+		$feed = new SimplePie();
+		
+		$feed->set_feed_url($feed_loc->location);
+		$feed->set_cache_location("mysql://feeds:feeds@localhost:3306/feeds");
+		$feed->init();
+		$feed->handle_content_type();
+
+		$items = array_merge($items, $feed->get_items());
+	}
+
+	$app->view()->appendData(array("items"=>$items));
+
 	$app->render('landing.twig.html');
 }
 
