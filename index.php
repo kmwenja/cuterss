@@ -57,6 +57,17 @@ function add_rss_feed(){
 	$app->redirect($app->urlFor('admin'));
 }
 
+function remove_rss_feed($id=null){
+	$app = \Slim\Slim::getInstance();
+
+	if($id!==null){
+		$feed = ORM::for_table('feeds')->find_one($id);
+		$feed->delete();
+	}
+
+	$app->redirect($app->urlFor('admin'));
+}
+
 function get_rss_feed_json(){
 	$app = \Slim\Slim::getInstance();
 
@@ -84,6 +95,7 @@ function get_rss_feed_html(){
 	$app->render('feed.twig.html');
 }
 
+$app->get('/admin/remove/:id','remove_rss_feed')->name('remove_rss');
 $app->post('/admin/add', 'add_rss_feed')->name('add_rss');
 $app->get('/admin', 'admin')->name('admin');
 $app->get('/feed', 'get_rss_feed_html')->name('feed');

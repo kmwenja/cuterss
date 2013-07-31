@@ -18,7 +18,7 @@
 		<div class="feeds">
 			<ol>
 			{% for feed in feeds %}
-				<li><a href="{{ feed.location }}">{{ feed.location }}</a></li>
+				<li><a href="{{ feed.location }}">{{ feed.location }}</a>&nbsp;&nbsp;-&nbsp;<a href="{{ urlFor('remove_rss', { id: feed.id }) }}">Remove</a></li>
 			{% endfor %}
 			</ol>
 		</div>
