@@ -87,11 +87,11 @@ class SimplePie_Cache_MySQL extends SimplePie_Cache_DB
 	public function __construct($location, $name, $type)
 	{
 		$this->options = array(
-			'user' => null,
-			'pass' => null,
-			'host' => '127.0.0.1',
-			'port' => '3306',
-			'path' => '',
+			//'user' => null,
+			//'pass' => null,
+			// 'host' => '127.0.0.1',
+			// 'port' => '3306',
+			// 'path' => '',
 			'extras' => array(
 				'prefix' => '',
 			),
