@@ -9,9 +9,7 @@ $app = new \Slim\Slim();
 
 require_once('config.php');
 
-function index(){
-	$app = \Slim\Slim::getInstance();
-
+function get_feed_items(){
 	// go through all the feed urls
 	$items = array();
 
@@ -27,7 +25,13 @@ function index(){
 		$items = array_merge($items, $feed->get_items());
 	}
 
-	$app->view()->appendData(array("items"=>$items));
+	return $items;
+}
+
+function index(){
+	$app = \Slim\Slim::getInstance();
+
+	$app->view()->appendData(array("items"=>get_feed_items()));
 
 	$app->render('landing.twig.html');
 }
