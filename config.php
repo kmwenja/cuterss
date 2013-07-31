@@ -31,3 +31,5 @@ $env->addFunction($urlFor);
 ORM::configure('mysql:host=localhost;dbname=feeds');
 ORM::configure('username', 'feeds');
 ORM::configure('password', 'feeds');
+
+require_once('phpQuery/phpQuery.php');

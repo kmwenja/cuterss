@@ -9,6 +9,19 @@ $app = new \Slim\Slim();
 
 require_once('config.php');
 
+class MyItemClass extends SimplePie_Item{
+
+	public function get_image(){
+		$doc = phpQuery::newDocument($this->get_description());
+		$src = null;
+
+		$img = $doc->find('img:first');
+		$src = $img->attr('src');
+
+		return $src;
+	}
+}
+
 function get_feed_items(){
 	// go through all the feed urls
 	$items = array();
@@ -19,6 +32,7 @@ function get_feed_items(){
 		
 		$feed->set_feed_url($feed_loc->location);
 		$feed->set_cache_location("mysql://feeds:feeds@localhost:3306/feeds");
+		$feed->set_item_class('MyItemClass');
 		$feed->init();
 		$feed->handle_content_type();
 
