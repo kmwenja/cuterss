@@ -30,8 +30,8 @@ $env->addFunction($urlFor);
 
 require_once('db_config.php');
 
-ORM::configure($_DB_DSN);
-ORM::configure('username', $_DB_USER);
-ORM::configure('password', $_DB_PASS);
+ORM::configure("mysql:host=".DB_HOST.";dbname=".DB_NAME);
+ORM::configure('username', DB_USER);
+ORM::configure('password', DB_PASS);
 
 require_once('phpQuery/phpQuery.php');

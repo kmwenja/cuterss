@@ -31,7 +31,7 @@ function get_feed_items(){
 		$feed = new SimplePie();
 		
 		$feed->set_feed_url($feed_loc->location);
-		$feed->set_cache_location("mysql://feeds:feeds@localhost:3306/feeds");
+		$feed->set_cache_location("mysql://".DB_USER.":".DB_PASS."@".DB_HOST.":3306/".DB_NAME);
 		$feed->set_item_class('MyItemClass');
 		$feed->init();
 		$feed->handle_content_type();

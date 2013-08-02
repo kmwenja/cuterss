@@ -1,5 +1,6 @@
 <?php
 
-$_DB_DSN = 'mysql:host=localhost;dbname=feeds';
-$_DB_USER = 'feeds';
-$_DB_PASS = 'feeds';
+define('DB_HOST','localhost');
+define('DB_NAME','feeds');
+define('DB_USER','feeds');
+define('DB_PASS','feeds');
