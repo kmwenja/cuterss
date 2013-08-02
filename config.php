@@ -28,8 +28,10 @@ $urlFor = new Twig_SimpleFunction('urlFor', function ($url, $data=null) use($app
 
 $env->addFunction($urlFor);
 
-ORM::configure('mysql:host=localhost;dbname=feeds');
-ORM::configure('username', 'feeds');
-ORM::configure('password', 'feeds');
+require_once('db_config.php');
+
+ORM::configure($_DB_DSN);
+ORM::configure('username', $_DB_USER);
+ORM::configure('password', $_DB_PASS);
 
 require_once('phpQuery/phpQuery.php');
