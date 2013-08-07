@@ -13,11 +13,26 @@ class MyItemClass extends SimplePie_Item{
 
 	public function get_image(){
 		$doc = phpQuery::newDocument($this->get_description());
-		$src = null;
+
+		$src = "http://lorempixel.com/200/200";
 
 		$img = $doc->find('img:first');
-		$src = $img->attr('src');
 
+		$temp_src = $img->attr('src');
+
+		if(!empty($temp_src)){
+			$src = $img->attr('src');
+		}
+		else{
+			$doc = phpQuery::newDocument($this->get_content());
+			$img = $doc->find('img:first');
+			$temp_src = $img->attr('src');
+
+			if(!empty($temp_src)){
+				$src = $img->attr('src');
+			}
+		}
+		
 		return $src;
 	}
 }

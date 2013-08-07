@@ -28,6 +28,13 @@ $urlFor = new Twig_SimpleFunction('urlFor', function ($url, $data=null) use($app
 
 $env->addFunction($urlFor);
 
+$double_quotes_to_html_entity = new Twig_SimpleFilter('dQ', function($content) use($app){
+	return str_replace('"', "&quot;", $content);
+	// TODO bug what about attribute quotes
+});
+
+$env->addFilter($double_quotes_to_html_entity);
+
 require_once('db_config.php');
 
 ORM::configure("mysql:host=".DB_HOST.";dbname=".DB_NAME);
